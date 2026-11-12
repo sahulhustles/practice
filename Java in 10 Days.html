@@ -1,0 +1,855 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Java in 10 Days</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one narrow column. Sticky day strip on top, ten collapsible day sections below, each split into timed blocks (Learn, Practice, Build, Review) that add up to 5 hours. */
+:root {
+  --bg: #eef2f6;
+  --surface: #ffffff;
+  --ink: #101e2b;
+  --muted: #54677a;
+  --line: #d5dee7;
+  --hover: #f1f5f9;
+  --box: #8a9bac;
+  --accent: #0a6ea8;
+  --accent-ink: #ffffff;
+  --done: #1b8553;
+  --on-done: #ffffff;
+  --k-learn: #0a6ea8;
+  --k-practice: #0e8a83;
+  --k-build: #b3680d;
+  --k-review: #6a55b5;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1721;
+    --surface: #15212d;
+    --ink: #e5edf4;
+    --muted: #94a8ba;
+    --line: #263646;
+    --hover: #1a2937;
+    --box: #5b7184;
+    --accent: #5db6e8;
+    --accent-ink: #06202f;
+    --done: #4cc38a;
+    --on-done: #06201a;
+    --k-learn: #5db6e8;
+    --k-practice: #4fc7be;
+    --k-build: #e5a04c;
+    --k-review: #a895e8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1721;
+  --surface: #15212d;
+  --ink: #e5edf4;
+  --muted: #94a8ba;
+  --line: #263646;
+  --hover: #1a2937;
+  --box: #5b7184;
+  --accent: #5db6e8;
+  --accent-ink: #06202f;
+  --done: #4cc38a;
+  --on-done: #06201a;
+  --k-learn: #5db6e8;
+  --k-practice: #4fc7be;
+  --k-build: #e5a04c;
+  --k-review: #a895e8;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.55 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 72px;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+.wrap { max-width: 820px; margin: 0 auto; }
+h1, h2 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+p { margin: 0; }
+code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--hover);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+  overflow-wrap: anywhere;
+}
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* header */
+.top { display: grid; gap: 14px; }
+.kicker {
+  font: 500 12px/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1 { font-size: clamp(34px, 7vw, 52px); line-height: 1.02; font-weight: 700; letter-spacing: -0.02em; }
+.lede { color: var(--muted); max-width: 62ch; }
+.overall { display: grid; gap: 8px; margin-top: 6px; }
+.overall-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 500 13px/1.3 var(--font-mono); font-variant-numeric: tabular-nums; }
+.overall-row span { min-width: 0; }
+.bar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--done); border-radius: 99px; transition: width 0.25s ease; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+.btn {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn:hover { background: var(--hover); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.06); background: var(--accent); }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.status { color: var(--muted); font-size: 13px; }
+
+/* rules and resources */
+.info { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 28px; padding-block: 20px; border-block: 1px solid var(--line); }
+.info h2 { font-size: 13px; font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.info ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.info li { min-width: 0; }
+.info .links { list-style: none; padding: 0; }
+.info .links span { color: var(--muted); }
+
+/* day strip */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-block: 10px;
+  margin-top: 8px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: thin;
+}
+.chip {
+  flex: 1 0 44px;
+  min-height: 44px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 6px 8px 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+  font: 500 12px/1 var(--font-mono);
+  text-align: center;
+}
+.chip:hover { background: var(--hover); }
+.chip .cbar { display: block; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.chip .cbar i { display: block; height: 100%; width: 0; background: var(--done); }
+.chip.next { border-color: var(--accent); color: var(--accent); }
+.chip.complete { background: var(--done); border-color: var(--done); color: var(--on-done); }
+.chip.complete .cbar { background: transparent; }
+.chip.complete .cbar i { background: var(--on-done); }
+
+/* day sections */
+.days { display: grid; gap: 14px; margin-top: 18px; }
+.day {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  scroll-margin-top: calc(84px + env(safe-area-inset-top, 0px));
+}
+.day > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.day > summary::-webkit-details-marker { display: none; }
+.sum-main { min-width: 0; display: grid; gap: 6px; }
+.eyebrow { font: 500 12px/1.2 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.day h2 { font-size: clamp(20px, 3.6vw, 24px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; }
+.sum-side { display: flex; align-items: center; gap: 12px; flex: none; font: 500 13px/1 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+.day.complete .sum-side .count { color: var(--done); }
+.chev {
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+  margin-bottom: 3px;
+}
+.day[open] .chev { transform: rotate(-135deg); margin-bottom: -3px; }
+.day-body { padding: 0 18px 18px; display: grid; gap: 16px; }
+.goal { color: var(--muted); max-width: 64ch; }
+.goal b { color: var(--ink); font-weight: 600; }
+
+.timebar { display: flex; gap: 3px; height: 8px; }
+.seg { position: relative; border-radius: 4px; overflow: hidden; background: color-mix(in srgb, var(--k) 20%, var(--surface)); min-width: 0; }
+.seg i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--k); transition: width 0.25s ease; }
+
+.block { display: grid; gap: 2px; }
+.block-head { display: flex; align-items: center; gap: 10px; padding: 4px 8px; font: 500 12px/1.2 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.block-head .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--k); flex: none; }
+.block-head .time { color: var(--muted); text-transform: none; letter-spacing: 0; }
+.block-head .bcount { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.task { display: flex; gap: 12px; align-items: flex-start; padding: 9px 8px; border-radius: 8px; cursor: pointer; }
+.task:hover { background: var(--hover); }
+.task input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 20px; height: 20px;
+  margin: 2px 0 0;
+  border: 1.5px solid var(--box);
+  border-radius: 5px;
+  background: var(--surface);
+  cursor: pointer;
+}
+.task input::after {
+  content: "";
+  width: 10px; height: 5px;
+  border-left: 2px solid var(--on-done);
+  border-bottom: 2px solid var(--on-done);
+  transform: rotate(-45deg) translate(1px, -1px);
+  opacity: 0;
+}
+.task input:checked { background: var(--done); border-color: var(--done); }
+.task input:checked::after { opacity: 1; }
+.task span { min-width: 0; overflow-wrap: anywhere; }
+.task input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--box); }
+
+.foot { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: space-between; color: var(--muted); font-size: 13px; }
+
+@media (max-width: 480px) {
+  .day > summary { padding: 14px; }
+  .day-body { padding: 0 12px 14px; }
+  .sum-side .hrs { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar > i, .seg i, .chev { transition: none; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">10 days · 5 hours a day · 50 hours · 13 to 22 Nov</div>
+    <h1>Java in 10 Days</h1>
+    <p class="lede">Core Java, object-oriented design, collections, streams, files, threads, Maven, JUnit and JDBC, ending in a small tested app on GitHub. Fifty hours gets you productive with the language. Spring Boot and interview-level DSA come after this, and Day 10 ends with a list of what to study next.</p>
+    <div class="overall">
+      <div class="overall-row"><span id="overallTasks">0 of 0 tasks</span><span id="overallHours">0.0 h of 50 h</span></div>
+      <div class="bar" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="overallBar"><i id="overallFill"></i></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="continueBtn" type="button">Continue where I left off</button>
+      <span class="status" id="status">Progress is saved in this browser.</span>
+    </div>
+  </header>
+
+  <section class="info" aria-label="Ground rules and resources">
+    <div>
+      <h2>Ground rules</h2>
+      <ul>
+        <li>Type every example yourself. Copy-paste teaches nothing.</li>
+        <li>Stuck for 20 minutes? Look it up, then redo the problem from a blank file.</li>
+        <li>Commit to Git at the end of every day.</li>
+        <li>Behind schedule? Cut Practice tasks, never the Build block.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Free resources</h2>
+      <ul class="links">
+        <li><a href="https://dev.java/learn/" target="_blank" rel="noopener">dev.java/learn</a> <span>official tutorials, your main reference</span></li>
+        <li><a href="https://java-programming.mooc.fi/" target="_blank" rel="noopener">java-programming.mooc.fi</a> <span>University of Helsinki course, for deeper reading</span></li>
+        <li><a href="https://codingbat.com/java" target="_blank" rel="noopener">codingbat.com/java</a> <span>short practice problems</span></li>
+        <li><a href="https://exercism.org/tracks/java" target="_blank" rel="noopener">exercism.org/tracks/java</a> <span>exercises with feedback</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="nav" id="nav" aria-label="Jump to a day"></nav>
+  <main class="days" id="days"></main>
+
+  <div class="foot">
+    <span>Tick a task to save it. Collapse a day with its header.</span>
+    <button class="btn" id="resetBtn" type="button">Reset progress</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var DATES = ["Fri 13 Nov", "Sat 14 Nov", "Sun 15 Nov", "Mon 16 Nov", "Tue 17 Nov", "Wed 18 Nov", "Thu 19 Nov", "Fri 20 Nov", "Sat 21 Nov", "Sun 22 Nov"];
+  var KIND_LABEL = { learn: "Learn", practice: "Practice", build: "Build", review: "Review" };
+
+  function B(kind, label, mins, tasks) { return { kind: kind, label: label, mins: mins, tasks: tasks }; }
+
+  var DAYS = [
+    {
+      title: "Setup and syntax",
+      goal: "Write and run a program that reads input, branches and loops, without looking up the syntax.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Install JDK 21 (LTS) and check it with `java -version` and `javac -version`",
+          "Set up IntelliJ IDEA Community or VS Code with the Java extension pack and run Hello World",
+          "How code runs: source file, `javac`, bytecode, JVM. Know what JDK, JRE and JVM each mean",
+          "Primitive types, `String`, `var`, casting, `final` constants, integer vs floating-point division",
+          "Operators, `if`/`else`, `switch`, and the loops `for`, `while`, `do-while`",
+          "Read input with `Scanner` (numbers and full lines)"
+        ]),
+        B("practice", "Practice", 120, [
+          "CodingBat Java, Warmup-1 and Logic-1: solve at least 15",
+          "Print a right triangle, a pyramid and a diamond with nested loops",
+          "Write prime check, factorial, Fibonacci series, digit sum and number reversal",
+          "Port a small script you already wrote in another language to Java and list what had to change"
+        ]),
+        B("build", "Build", 60, [
+          "Number-guessing game: `Random` secret, attempt counter, higher/lower hints, play-again loop",
+          "Menu-driven calculator using `switch` inside a loop until the user quits"
+        ]),
+        B("review", "Review", 30, [
+          "Write five lines of notes on what surprised you about Java syntax",
+          "Create a GitHub repo `java-10-days` and push today's code with a clear commit message"
+        ])
+      ]
+    },
+    {
+      title: "Methods, arrays and strings",
+      goal: "Solve basic array and string problems using your own helper methods.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Methods: parameters, return types, overloading, varargs",
+          "Pass-by-value in Java: what happens to primitives vs object references",
+          "1D and 2D arrays, the enhanced `for` loop, and the `Arrays` class (`sort`, `fill`, `toString`, `copyOf`)",
+          "`String` immutability, the string pool, `equals` vs `==`, and common `String` methods",
+          "`StringBuilder` and when to use it instead of `+` in a loop"
+        ]),
+        B("practice", "Practice", 120, [
+          "CodingBat String-1 and Array-1: solve at least 15 between them",
+          "Reverse an array in place, find the max and second max, rotate an array by k",
+          "Palindrome check, anagram check, character frequency with an `int[26]`",
+          "Matrix: transpose, row sums and column sums"
+        ]),
+        B("build", "Build", 60, [
+          "Text analyser: read a sentence, print word count, longest word, vowel count and the words in reverse order"
+        ]),
+        B("review", "Review", 30, [
+          "Explain out loud why two equal strings can fail `==`, then write a test that shows it",
+          "Redo one string problem with `StringBuilder`, then commit"
+        ])
+      ]
+    },
+    {
+      title: "Classes and objects",
+      goal: "Model a real-world thing as a class with proper encapsulation.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Class vs object, fields, methods, and constructors (default, parameterised, chained with `this(...)`)",
+          "`this`, `static` fields, methods and blocks",
+          "Access modifiers, encapsulation, getters and setters",
+          "Packages and imports; organise code into `model` and `app` packages",
+          "`final` fields and immutable classes",
+          "Memory basics: stack vs heap, references, garbage collection"
+        ]),
+        B("practice", "Practice", 120, [
+          "Write `Student`, `Rectangle` and `Employee` classes with constructors and `toString()`",
+          "Use a `static` counter to track how many objects were created",
+          "Write an immutable `Point` class with a `distanceTo` method",
+          "Create an array of `Student` objects and sort it by marks without `Arrays.sort`"
+        ]),
+        B("build", "Build", 60, [
+          "`BankAccount` with deposit, withdraw, balance checks and a `Main` that runs five operations"
+        ]),
+        B("review", "Review", 30, [
+          "Sketch the stack and heap for `Student s = new Student(...)` and explain it aloud",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "Inheritance and polymorphism",
+      goal: "Design a small class hierarchy and explain why you picked an interface or an abstract class.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Inheritance, `super`, and method overriding with `@Override` (and how it differs from overloading)",
+          "Polymorphism, upcasting, downcasting and `instanceof`",
+          "Abstract classes vs interfaces, including `default` and `static` interface methods",
+          "`Object` methods: `equals`, `hashCode`, `toString`, and why `equals` and `hashCode` go together",
+          "Nested, inner and anonymous classes",
+          "`enum` with fields, constructors and methods"
+        ]),
+        B("practice", "Practice", 120, [
+          "`Shape` with abstract `area()`, implemented by `Circle`, `Rectangle` and `Triangle`",
+          "Interface `Payable` implemented by two unrelated classes",
+          "Override `equals` and `hashCode` in a class and check it behaves in a `HashSet`",
+          "Predict the output of five overriding and static-dispatch snippets, then run them"
+        ]),
+        B("build", "Build", 60, [
+          "Extend the bank app with `SavingsAccount` and `CurrentAccount` subclasses and a `Transferable` interface"
+        ]),
+        B("review", "Review", 30, [
+          "Write a short table: abstract class vs interface, and composition vs inheritance",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "Exceptions and core collections",
+      goal: "Handle errors cleanly and pick the right `List` or `Set` for a task.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Exception hierarchy: `Throwable`, `Exception`, `RuntimeException`; checked vs unchecked",
+          "`try`/`catch`/`finally`, multi-catch, try-with-resources, `throw` vs `throws`",
+          "Custom exceptions",
+          "Wrapper classes, autoboxing, and the `Integer` cache gotcha with `==`",
+          "Generics basics: generic classes, generic methods, wildcards",
+          "`ArrayList` vs `LinkedList`; `HashSet`, `LinkedHashSet`, `TreeSet`; `Iterator`"
+        ]),
+        B("practice", "Practice", 120, [
+          "Write `InsufficientFundsException` and use it in `withdraw`",
+          "Remove duplicates from a list with a `Set`, keeping the original order",
+          "Find the common elements of two lists",
+          "Write a generic `Pair<A, B>` class and a generic `max` method",
+          "Trigger five different exceptions on purpose and read each stack trace"
+        ]),
+        B("build", "Build", 60, [
+          "Add exception handling and an `ArrayList<Account>` to the bank app: add, find and remove accounts"
+        ]),
+        B("review", "Review", 30, [
+          "Explain checked vs unchecked exceptions with one example of each",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "Maps, queues and sorting",
+      goal: "Pick the right collection for a problem and sort with a `Comparator`.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "`HashMap`, `LinkedHashMap`, `TreeMap`; iterate with `entrySet`; `getOrDefault`, `merge`, `computeIfAbsent`",
+          "`Queue`, `Deque`, `ArrayDeque`, `PriorityQueue`, and why `Deque` replaces `Stack`",
+          "`Comparable` vs `Comparator`, and the `Collections` utility class",
+          "How `HashMap` works inside: hashing, buckets, collisions, load factor"
+        ]),
+        B("practice", "Practice", 120, [
+          "Two Sum with a `HashMap`",
+          "Group anagrams together",
+          "Valid parentheses using a `Deque`",
+          "Top K frequent elements using a `PriorityQueue`",
+          "Sort students by marks, then by name, using a `Comparator`"
+        ]),
+        B("build", "Build", 60, [
+          "Word-frequency counter: read a block of text and print the ten most common words"
+        ]),
+        B("review", "Review", 30, [
+          "Write a time-complexity table for `ArrayList`, `LinkedList`, `HashMap`, `TreeMap` and `PriorityQueue`",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "Lambdas and streams",
+      goal: "Rewrite loops as stream pipelines, and know when a plain loop is clearer.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Functional interfaces (`Predicate`, `Function`, `Consumer`, `Supplier`), lambdas and method references",
+          "Streams: `filter`, `map`, `sorted`, `collect`, `reduce`",
+          "`Collectors.groupingBy`, `partitioningBy`, `joining`, `counting`",
+          "`Optional` and how it replaces null checks",
+          "Modern syntax: `record`, `var`, text blocks, switch expressions, pattern matching for `instanceof`",
+          "`java.time`: `LocalDate`, `LocalDateTime`, `Duration`"
+        ]),
+        B("practice", "Practice", 120, [
+          "Ten stream exercises on a `List<Employee>`: highest paid, group by department, average salary, names joined with commas",
+          "Convert five earlier loop solutions into streams",
+          "Define your own functional interface and pass a lambda to it",
+          "Chain `Optional` calls instead of nested null checks"
+        ]),
+        B("build", "Build", 60, [
+          "Employee report: use a `record`, then print salary statistics per department with streams"
+        ]),
+        B("review", "Review", 30, [
+          "Pick one stream you wrote that is harder to read than the loop and rewrite it",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "File I/O and concurrency",
+      goal: "Save data to disk and run work on several threads without a race condition.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "`Path`, `Files.readAllLines`, `Files.write`, `BufferedReader`, and try-with-resources for files",
+          "Reading and writing CSV; JSON with Jackson or Gson (overview)",
+          "`Thread`, `Runnable`, thread lifecycle, `join`",
+          "`synchronized`, race conditions, `volatile`",
+          "`ExecutorService`, `Callable`, `Future`, and `CompletableFuture` basics",
+          "`ConcurrentHashMap`, `AtomicInteger`, and what virtual threads in Java 21 change"
+        ]),
+        B("practice", "Practice", 120, [
+          "Read a text file and count its lines and words",
+          "Write and read a CSV of students",
+          "Show a race condition with a shared counter, fix it with `synchronized`, then with `AtomicInteger`",
+          "Run five tasks on a fixed thread pool and collect results through `Future`",
+          "Producer and consumer with a `BlockingQueue`"
+        ]),
+        B("build", "Build", 60, [
+          "Make the bank app load accounts from a CSV file at start and save them on exit"
+        ]),
+        B("review", "Review", 30, [
+          "Explain why `count++` is not atomic",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "Maven, JUnit and JDBC",
+      goal: "Run a Maven project with tests that talks to a database.",
+      blocks: [
+        B("learn", "Learn", 90, [
+          "Maven: `pom.xml`, dependencies, the `src/main/java` and `src/test/java` layout, and `mvn compile`, `test`, `package`",
+          "JUnit 5: `@Test`, assertions, `@BeforeEach`, `assertThrows`",
+          "JDBC: connection, `PreparedStatement`, `ResultSet`, closing resources with try-with-resources",
+          "SQL refresher: `CREATE`, `INSERT`, `SELECT`, `UPDATE`, `DELETE`, `JOIN` (use H2, SQLite or PostgreSQL)",
+          "Read the Spring Boot quickstart on dev.java or spring.io to see what it adds on top of JDBC"
+        ]),
+        B("practice", "Practice", 120, [
+          "Convert the bank app into a Maven project",
+          "Write eight JUnit tests for `BankAccount`, including the exception cases",
+          "JDBC CRUD on a `students` table",
+          "Show a SQL injection with string concatenation, then fix it with `PreparedStatement`",
+          "Run `mvn test` and `mvn package` and read the output"
+        ]),
+        B("build", "Build", 60, [
+          "Replace the CSV storage in the bank app with JDBC"
+        ]),
+        B("review", "Review", 30, [
+          "Write down which three Java topics still feel shaky; they go into tomorrow's Review",
+          "Commit and push"
+        ])
+      ]
+    },
+    {
+      title: "Capstone and gap check",
+      goal: "A working, tested app on GitHub with a README, plus a short list of what to study next.",
+      blocks: [
+        B("learn", "Plan", 30, [
+          "Pick one: library manager, task tracker or inventory tool. Write 8 to 10 requirements",
+          "Sketch the classes and how they connect"
+        ]),
+        B("build", "Build", 150, [
+          "At least four classes, one interface and one custom exception",
+          "Use collections and at least three stream pipelines",
+          "Persist data with JDBC or a file",
+          "Write at least ten JUnit tests and get `mvn test` green",
+          "A simple menu-driven console interface"
+        ]),
+        B("practice", "Practice", 60, [
+          "Answer 15 core Java questions aloud: JVM memory areas, `equals`/`hashCode`, `HashMap` internals, string pool, checked vs unchecked, `final` vs `finally`, abstract vs interface, thread safety",
+          "Solve three LeetCode Easy problems in Java"
+        ]),
+        B("review", "Review", 60, [
+          "Write the README: what it does, how to run it, how to test it",
+          "Push the capstone to GitHub",
+          "Write your gap list and pick the next step: Spring Boot, DSA in Java or design patterns"
+        ])
+      ]
+    }
+  ];
+
+  var STORE_KEY = "java10days.v1";
+  var allIds = {};
+  var checked = new Set();
+  var refs = { days: [], blocks: [], tasks: [] };
+
+  // ---- build model ids
+  DAYS.forEach(function (d, di) {
+    d.blocks.forEach(function (b, bi) {
+      b.items = b.tasks.map(function (text, ti) {
+        var id = "d" + (di + 1) + "b" + (bi + 1) + "t" + (ti + 1);
+        allIds[id] = true;
+        return { id: id, text: text };
+      });
+    });
+  });
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function fmt(parent, text) {
+    text.split("`").forEach(function (part, i) {
+      if (i % 2) { var c = document.createElement("code"); c.textContent = part; parent.appendChild(c); }
+      else if (part) { parent.appendChild(document.createTextNode(part)); }
+    });
+  }
+  function dur(m) {
+    var h = Math.floor(m / 60), r = m % 60;
+    return (h ? h + "h" : "") + (h && r ? " " : "") + (r ? r + "m" : "");
+  }
+
+  // ---- storage
+  function loadLocal() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) { var arr = JSON.parse(raw); if (Array.isArray(arr)) return arr.filter(function (id) { return allIds[id]; }); }
+    } catch (e) {}
+    return [];
+  }
+  function saveLocal() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(Array.from(checked))); } catch (e) {}
+  }
+
+  var progressDoc = null, writing = false, again = false, timer = null;
+  function schedulePersist() {
+    saveLocal();
+    if (!progressDoc) return;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function () { timer = null; flush(); }, 400);
+  }
+  function flush() {
+    if (!progressDoc) return;
+    if (writing) { again = true; return; }
+    writing = true;
+    (function run() {
+      again = false;
+      progressDoc.set({ checked: Array.from(checked) }).then(function () {
+        if (again) run(); else writing = false;
+      }, function () { writing = false; });
+    })();
+  }
+
+  // ---- render
+  var daysEl = document.getElementById("days");
+  var navEl = document.getElementById("nav");
+
+  DAYS.forEach(function (d, di) {
+    var dayRef = { tasks: [], blocks: [] };
+    var chip = el("button", "chip");
+    chip.type = "button";
+    chip.appendChild(el("span", null, "D" + (di + 1)));
+    var cbar = el("span", "cbar"); var cfill = document.createElement("i"); cbar.appendChild(cfill); chip.appendChild(cbar);
+    chip.addEventListener("click", function () {
+      var node = document.getElementById("day-" + (di + 1));
+      node.open = true;
+      scrollTo(node);
+    });
+    navEl.appendChild(chip);
+
+    var det = el("details", "day");
+    det.id = "day-" + (di + 1);
+    det.open = true;
+
+    var sum = el("summary");
+    var main = el("div", "sum-main");
+    main.appendChild(el("div", "eyebrow", "Day " + (di + 1) + " · " + DATES[di]));
+    main.appendChild(el("h2", null, d.title));
+    var side = el("div", "sum-side");
+    var hrs = el("span", "hrs", "5h");
+    var count = el("span", "count", "0/0");
+    side.appendChild(hrs); side.appendChild(count); side.appendChild(el("span", "chev"));
+    sum.appendChild(main); sum.appendChild(side);
+    det.appendChild(sum);
+
+    var body = el("div", "day-body");
+    var goal = el("p", "goal");
+    goal.appendChild(el("b", null, "Done when: "));
+    fmt(goal, d.goal);
+    body.appendChild(goal);
+
+    var timebar = el("div", "timebar");
+    timebar.setAttribute("aria-hidden", "true");
+    body.appendChild(timebar);
+
+    d.blocks.forEach(function (b) {
+      var blockRef = { mins: b.mins, tasks: [] };
+      var kvar = "var(--k-" + b.kind + ")";
+
+      var seg = el("div", "seg"); seg.style.width = (b.mins / 300 * 100) + "%"; seg.style.setProperty("--k", kvar);
+      seg.title = b.label + " " + dur(b.mins);
+      var segFill = document.createElement("i"); seg.appendChild(segFill); timebar.appendChild(seg);
+      blockRef.segFill = segFill;
+
+      var blockEl = el("section", "block");
+      blockEl.style.setProperty("--k", kvar);
+      var head = el("div", "block-head");
+      head.appendChild(el("span", "dot"));
+      head.appendChild(el("span", null, b.label));
+      head.appendChild(el("span", "time", dur(b.mins)));
+      var bcount = el("span", "bcount", "0/" + b.items.length);
+      head.appendChild(bcount);
+      blockEl.appendChild(head);
+      blockRef.count = bcount;
+
+      b.items.forEach(function (t) {
+        var label = el("label", "task");
+        var input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = t.id;
+        var span = el("span"); fmt(span, t.text);
+        label.appendChild(input); label.appendChild(span);
+        blockEl.appendChild(label);
+        input.addEventListener("change", function () {
+          if (input.checked) checked.add(t.id); else checked.delete(t.id);
+          refresh();
+          schedulePersist();
+        });
+        var tr = { id: t.id, input: input };
+        blockRef.tasks.push(tr); dayRef.tasks.push(tr); refs.tasks.push(tr);
+      });
+      body.appendChild(blockEl);
+      dayRef.blocks.push(blockRef); refs.blocks.push(blockRef);
+    });
+
+    det.appendChild(body);
+    daysEl.appendChild(det);
+    dayRef.det = det; dayRef.count = count; dayRef.chip = chip; dayRef.cfill = cfill;
+    refs.days.push(dayRef);
+  });
+
+  function scrollTo(node) {
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    try { node.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); } catch (e) { node.scrollIntoView(); }
+  }
+
+  // ---- refresh view from `checked`
+  var totalTasks = refs.tasks.length;
+  var overallTasks = document.getElementById("overallTasks");
+  var overallHours = document.getElementById("overallHours");
+  var overallFill = document.getElementById("overallFill");
+  var overallBar = document.getElementById("overallBar");
+  var continueBtn = document.getElementById("continueBtn");
+
+  function refresh() {
+    var doneTasks = 0, doneMins = 0, nextMarked = false;
+    refs.days.forEach(function (dr) {
+      var dDone = 0;
+      dr.tasks.forEach(function (t) {
+        var on = checked.has(t.id);
+        if (t.input.checked !== on) t.input.checked = on;
+        if (on) dDone++;
+      });
+      doneTasks += dDone;
+      dr.count.textContent = dDone + "/" + dr.tasks.length;
+      var complete = dr.tasks.length > 0 && dDone === dr.tasks.length;
+      dr.det.classList.toggle("complete", complete);
+      dr.chip.classList.toggle("complete", complete);
+      var isNext = !complete && !nextMarked;
+      if (isNext) nextMarked = true;
+      dr.chip.classList.toggle("next", isNext);
+      dr.cfill.style.width = (dr.tasks.length ? dDone / dr.tasks.length * 100 : 0) + "%";
+      dr.blocks.forEach(function (br) {
+        var bDone = 0;
+        br.tasks.forEach(function (t) { if (checked.has(t.id)) bDone++; });
+        br.count.textContent = bDone + "/" + br.tasks.length;
+        var frac = br.tasks.length ? bDone / br.tasks.length : 0;
+        br.segFill.style.width = (frac * 100) + "%";
+        doneMins += br.mins * frac;
+      });
+    });
+    var pct = totalTasks ? Math.round(doneTasks / totalTasks * 100) : 0;
+    overallTasks.textContent = doneTasks + " of " + totalTasks + " tasks";
+    overallHours.textContent = (doneMins / 60).toFixed(1) + " h of 50 h";
+    overallFill.style.width = pct + "%";
+    overallBar.setAttribute("aria-valuenow", String(pct));
+    var allDone = doneTasks === totalTasks;
+    continueBtn.disabled = allDone;
+    continueBtn.textContent = allDone ? "All 10 days done" : (doneTasks ? "Continue where I left off" : "Start Day 1");
+  }
+
+  continueBtn.addEventListener("click", function () {
+    var next = null;
+    for (var i = 0; i < refs.tasks.length; i++) { if (!checked.has(refs.tasks[i].id)) { next = refs.tasks[i]; break; } }
+    if (!next) return;
+    var det = next.input.closest("details");
+    if (det) det.open = true;
+    scrollTo(next.input.closest("label"));
+    try { next.input.focus({ preventScroll: true }); } catch (e) {}
+  });
+
+  // ---- reset (two clicks, no dialog)
+  var resetBtn = document.getElementById("resetBtn");
+  var resetTimer = null;
+  resetBtn.addEventListener("click", function () {
+    if (!resetTimer) {
+      resetBtn.textContent = "Click again to clear all progress";
+      resetTimer = setTimeout(function () { resetTimer = null; resetBtn.textContent = "Reset progress"; }, 4000);
+      return;
+    }
+    clearTimeout(resetTimer); resetTimer = null;
+    resetBtn.textContent = "Reset progress";
+    checked = new Set();
+    refresh();
+    schedulePersist();
+  });
+
+  // ---- start from local copy, then sync with the page store when available
+  loadLocal().forEach(function (id) { checked.add(id); });
+  refresh();
+
+  var statusEl = document.getElementById("status");
+  function initStore() {
+    if (!window.claude || typeof window.claude.use !== "function") return;
+    Promise.all([window.claude.use("db"), window.claude.use("user")]).then(function (r) {
+      var db = r[0], user = r[1];
+      if (!db || !user) return null;
+      return user.id().then(function (id) {
+        if (!id) return null;
+        progressDoc = db.doc("data/users/" + id + "/progress");
+        var first = true;
+        progressDoc.onSnapshot(function (snap) {
+          if (snap.metadata && snap.metadata.hasPendingWrites) return;
+          if (timer || writing) return;
+          var data = snap.exists ? snap.data() : null;
+          if (data && Array.isArray(data.checked)) {
+            checked = new Set(data.checked.filter(function (x) { return allIds[x]; }));
+            saveLocal();
+            refresh();
+          } else if (first && checked.size) {
+            flush();
+          }
+          first = false;
+          statusEl.textContent = "Progress is saved to your account and follows you across devices.";
+        }, function () {
+          progressDoc = null;
+          statusEl.textContent = "Progress is saved in this browser.";
+        });
+      });
+    }).catch(function () {});
+  }
+  initStore();
+})();
+</script>
+
+</body></html>
