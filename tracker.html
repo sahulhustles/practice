@@ -1,339 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111827">
-<title>10-Day Java Learning Tracker</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>10-Day Java Roadmap Tracker</title>
 <style>
-:root {
-  color-scheme: dark;
-  --bg: #0b1020; --panel: #121a2b; --panel2: #182338;
-  --text: #edf2f7; --muted: #9aa9bd; --line: #29364d;
-  --accent: #75e0b3; --accent2: #7db7ff; --warn: #f4c779;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0; background: radial-gradient(circle at top right, #172943 0, var(--bg) 42%);
-  color: var(--text); font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
-}
-.wrap { width: min(1120px, calc(100% - 32px)); margin: 36px auto 64px; }
-header { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; margin-bottom:24px; }
-.eyebrow { color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-h1 { margin:8px 0 6px; font-size:clamp(28px, 5vw, 42px); line-height:1.1; letter-spacing:-.04em; }
-.sub { color:var(--muted); margin:0; }
-.actions { display:flex; flex-wrap:wrap; gap:8px; }
-button {
-  border:1px solid var(--line); background:var(--panel2); color:var(--text);
-  border-radius:10px; padding:10px 13px; cursor:pointer; font:inherit; font-size:13px;
-}
-button:hover { border-color:var(--accent2); }
-button.primary { background:var(--accent); color:#092018; border-color:var(--accent); font-weight:800; }
-.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:22px 0; }
-.stat,.panel,.day {
-  background:rgba(18,26,43,.92); border:1px solid var(--line); border-radius:16px;
-}
-.stat { padding:16px; }
-.stat strong { display:block; font-size:26px; letter-spacing:-.04em; }
-.stat span { color:var(--muted); font-size:12px; }
-.progress-panel { padding:18px; margin-bottom:22px; }
-.progress-head { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:10px; }
-.progress-head strong { font-size:14px; }
-.progress-head span { color:var(--accent); font-weight:800; }
-.track { height:10px; background:#26334a; border-radius:99px; overflow:hidden; }
-.fill { height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:99px; transition:width .2s; }
-.section-title { margin:28px 0 12px; font-size:18px; }
-.days { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-.day { overflow:hidden; }
-.day-head { display:flex; justify-content:space-between; gap:12px; padding:16px 17px; background:var(--panel2); border-bottom:1px solid var(--line); }
-.day-head h3 { margin:0; font-size:16px; }
-.day-head p { color:var(--muted); margin:3px 0 0; font-size:12px; }
-.day-count { color:var(--accent); font-size:12px; font-weight:800; white-space:nowrap; }
-.tasks { padding:12px 17px 15px; }
-.task { display:flex; align-items:flex-start; gap:10px; padding:7px 0; color:#dce5f1; font-size:13px; cursor:pointer; }
-.task input { accent-color:var(--accent); width:16px; height:16px; margin:2px 0 0; flex:none; }
-.task:has(input:checked) span { color:#8495aa; text-decoration:line-through; }
-.deliverable { border-top:1px solid var(--line); margin-top:8px; padding-top:11px; color:var(--muted); font-size:12px; }
-.deliverable b { color:var(--warn); }
-.notes { margin-top:12px; }
-.notes label { display:block; color:var(--muted); font-size:12px; margin-bottom:5px; }
-textarea {
-  width:100%; min-height:64px; resize:vertical; border:1px solid var(--line);
-  background:#0c1424; color:var(--text); border-radius:9px; padding:9px;
-  font:13px/1.5 inherit;
-}
-.bottom { margin-top:26px; padding:18px; }
-.bottom p { color:var(--muted); margin:6px 0 0; font-size:13px; }
-footer { color:var(--muted); font-size:12px; text-align:center; margin-top:24px; }
-@media(max-width:760px) {
-  header { display:block; } .actions { margin-top:16px; }
-  .stats { grid-template-columns:repeat(2,1fr); }
-  .days { grid-template-columns:1fr; }
-}
-@media print {
-  body { background:white; color:#111; }
-  .stat,.panel,.day { background:white; border-color:#bbb; break-inside:avoid; }
-  .day-head { background:#eee; } .task { color:#222; }
-  .sub,.stat span,.day-head p,.deliverable,.notes label,footer { color:#555; }
-  button { display:none; } textarea { color:#111; background:white; }
-}
+:root{color-scheme:dark;--bg:#0b1120;--panel:#121c2e;--panel2:#17243a;--text:#e8eef8;--muted:#9aabc2;--line:#293952;--accent:#77a9ff;--good:#53d6a0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:34px 20px 24px;background:linear-gradient(135deg,#14243c,#101827);border-bottom:1px solid var(--line)}
+.wrap{max-width:1050px;margin:auto;padding:0 18px}h1{font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 8px}h2{font-size:1.25rem;margin:0 0 8px}p{margin:6px 0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.stat,.panel,.day{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.stat strong{display:block;font-size:1.5rem}.progress{height:9px;background:#26364e;border-radius:99px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:var(--good);transition:width .2s}
+main{padding:24px 0 60px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+button{background:var(--panel2);color:var(--text);border:1px solid var(--line);padding:9px 13px;border-radius:9px;cursor:pointer;font:inherit}button:hover{border-color:var(--accent)}
+.day{margin:14px 0;padding:0;overflow:hidden}.day-head{padding:17px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;cursor:pointer}.day-head h2{margin:0}.day-head p{margin:3px 0 0}.day-number{color:var(--accent);font-weight:750;white-space:nowrap}.day-body{padding:0 18px 18px;border-top:1px solid var(--line)}
+.goal{padding:12px 0 6px}.hour{padding:13px 0;border-top:1px solid var(--line)}.hour h3{font-size:1rem;margin:0 0 8px;color:#c5d8f5}
+label.task{display:flex;gap:10px;align-items:flex-start;margin:8px 0;color:#d5deeb;cursor:pointer}input[type=checkbox]{margin-top:4px;accent-color:var(--good);width:16px;height:16px;flex:0 0 auto}
+.task.done span{text-decoration:line-through;color:#7e91aa}.deliverable{background:#102c2a;border:1px solid #24534b;border-radius:10px;padding:12px;margin-top:14px}.deliverable strong{color:#8be2bf}
+footer{color:var(--muted);font-size:.9rem;padding:18px 0}.small{font-size:.88rem}.day-head:focus{outline:2px solid var(--accent);outline-offset:-2px}
+@media(max-width:600px){.stats{grid-template-columns:1fr}.day-head{align-items:flex-start}.day-number{font-size:.85rem}}
 </style>
 </head>
 <body>
+<header><div class="wrap">
+<h1>10-Day Java Roadmap</h1>
+<p>50 focused hours · Java 25 · Learn it, then build it. Tick tasks as you complete them.</p>
+<div class="stats">
+ <div class="stat"><span class="small">Overall progress</span><strong id="percent">0%</strong><div class="progress"><div class="bar" id="bar"></div></div></div>
+ <div class="stat"><span class="small">Tasks completed</span><strong id="completed">0 / 0</strong></div>
+ <div class="stat"><span class="small">Daily target</span><strong>5 hours</strong><span class="small">50 hours total</span></div>
+</div>
+</div></header>
 <main class="wrap">
-  <header>
-    <div>
-      <div class="eyebrow">50 focused hours · 10 days · Java 25</div>
-      <h1>Java Learning Tracker</h1>
-      <p class="sub">A practical checklist from fundamentals to a tested Java application.</p>
-    </div>
-    <div class="actions">
-      <button onclick="window.print()">Print tracker</button>
-      <button onclick="exportProgress()">Export progress</button>
-      <button onclick="resetProgress()">Reset</button>
-    </div>
-  </header>
-
-  <section class="stats">
-    <div class="stat"><strong id="done">0</strong><span>Tasks completed</span></div>
-    <div class="stat"><strong id="total">0</strong><span>Total tasks</span></div>
-    <div class="stat"><strong id="percent">0%</strong><span>Overall progress</span></div>
-    <div class="stat"><strong id="hours">0 / 50</strong><span>Study hours logged</span></div>
-  </section>
-
-  <section class="panel progress-panel">
-    <div class="progress-head"><strong>Overall roadmap progress</strong><span id="progressLabel">0%</span></div>
-    <div class="track"><div class="fill" id="progressFill"></div></div>
-  </section>
-
-  <h2 class="section-title">Daily checklist</h2>
-  <section class="days" id="days"></section>
-
-  <section class="panel bottom">
-    <strong>Final project — Personal Task Manager</strong>
-    <p>Use this project to combine OOP, collections, file persistence, Streams, exception handling and JUnit testing. Track these milestones alongside your daily tasks.</p>
-    <div id="finalTasks" class="tasks"></div>
-  </section>
-  <footer>Progress and notes are saved in this browser on this device. Export a JSON backup before clearing browser data.</footer>
+<div class="toolbar">
+<button id="expandAll">Expand all</button><button id="collapseAll">Collapse all</button><button id="reset">Reset progress</button>
+<span class="small" id="saved">Progress saves automatically in this browser.</span>
+</div>
+<div id="roadmap"></div>
+<footer>Tip: Commit your work every day. The browser tracker stores checkmarks locally on this device; push your code and notes to GitHub for a durable record.</footer>
 </main>
-
 <script>
-const roadmap = [
-["Day 1","Java Fundamentals",[
-"Understand JDK, JRE, JVM and Java compilation",
-"Install and configure JDK 25",
-"Verify java --version and javac --version",
-"Understand Java program structure and main method",
-"Learn variables and primitive data types",
-"Learn type casting and operators",
-"Read console input using Scanner",
-"Learn String and common String methods",
-"Build a command-line calculator",
-"Solve 10 basic programming problems"
-],"Calculator and basic Java exercises."],
-["Day 2","Control Flow and Methods",[
-"Learn if, else-if and switch",
-"Learn for, while and do-while loops",
-"Understand break and continue",
-"Declare and call methods",
-"Understand parameters and return values",
-"Practice method overloading",
-"Understand variable scope",
-"Implement a recursive method",
-"Build a number guessing game",
-"Solve 10 loop and method problems"
-],"Number guessing game."],
-["Day 3","Arrays and Strings",[
-"Create and initialize one-dimensional arrays",
-"Work with multidimensional arrays",
-"Traverse and manipulate array elements",
-"Implement linear and binary search",
-"Implement bubble, selection and insertion sort",
-"Understand String immutability",
-"Practice StringBuilder and StringBuffer",
-"Understand equals() versus ==",
-"Solve 10 array and String problems"
-],"Array and String problem collection."],
-["Day 4","Object-Oriented Programming",[
-"Understand classes and objects",
-"Create constructors and overloaded constructors",
-"Understand the this keyword",
-"Learn static variables and methods",
-"Apply encapsulation",
-"Use getters and setters appropriately",
-"Understand access modifiers",
-"Organize code using packages and imports",
-"Build a Student Management System"
-],"Student Management System."],
-["Day 5","Advanced OOP",[
-"Understand inheritance",
-"Practice method overriding",
-"Understand polymorphism",
-"Compare compile-time and runtime polymorphism",
-"Create abstract classes",
-"Create and implement interfaces",
-"Explore default and static interface methods",
-"Understand the final keyword",
-"Compare composition and inheritance",
-"Build an object-oriented Banking System"
-],"Banking System with accounts and basic transactions."],
-["Day 6","Collections and Generics",[
-"Understand the Java Collections Framework",
-"Practice ArrayList and LinkedList",
-"Practice HashSet and TreeSet",
-"Practice HashMap and TreeMap",
-"Iterate using Iterator and enhanced for",
-"Understand Comparable and Comparator",
-"Create generic classes and methods",
-"Understand bounded type parameters and wildcards",
-"Learn basic Big-O time complexity",
-"Build a Contact Management application"
-],"Contact Management System."],
-["Day 7","Exceptions and File I/O",[
-"Understand the Java exception hierarchy",
-"Use try, catch and finally",
-"Understand throw and throws",
-"Compare checked and unchecked exceptions",
-"Create custom exceptions",
-"Explore File and Path APIs",
-"Read files using BufferedReader",
-"Write files using BufferedWriter",
-"Understand basic serialization concepts",
-"Build a file-based Expense Tracker"
-],"Expense Tracker that saves and loads data from files."],
-["Day 8","Functional Java",[
-"Understand lambda expressions",
-"Learn functional interfaces",
-"Practice Predicate, Function, Consumer and Supplier",
-"Understand method references",
-"Learn the Stream API",
-"Practice filter(), map() and reduce()",
-"Practice sorted(), distinct() and collect()",
-"Understand Optional",
-"Compare intermediate and terminal stream operations",
-"Solve 10 Stream API challenges"
-],"Data-processing application using Streams."],
-["Day 9","Multithreading and JVM",[
-"Understand processes versus threads",
-"Create threads using Thread and Runnable",
-"Understand the thread lifecycle",
-"Practice synchronized",
-"Understand race conditions and deadlocks",
-"Learn ExecutorService",
-"Practice Callable and Future",
-"Understand heap and stack memory",
-"Learn garbage collection fundamentals",
-"Understand JIT compilation",
-"Inspect bytecode using javap",
-"Run a basic multithreading experiment"
-],"Multithreaded task-processing application."],
-["Day 10","Testing and Final Project",[
-"Understand Maven and its project structure",
-"Understand dependencies and pom.xml",
-"Set up JUnit 5",
-"Write unit tests for important methods",
-"Practice debugging with breakpoints",
-"Learn basic logging",
-"Review OOP, collections, exceptions and Streams",
-"Refactor code into meaningful packages",
-"Write useful project documentation",
-"Complete, run and test the final project",
-"Push the finished project to GitHub"
-],"A complete, tested and documented Java application."]
-];
-const finalItems = [
-"Add tasks with title, description, priority and due date",
-"List, update, complete and delete tasks",
-"Filter tasks by status or priority",
-"Persist tasks in a local file and reload on startup",
-"Validate user input and handle errors",
-"Use classes, interfaces, encapsulation and collections",
-"Use Streams for filtering and sorting",
-"Add JUnit 5 unit tests",
-"Document build and run instructions"
-];
-const STORAGE_KEY = "java10dayTracker.v1";
-let state = loadState();
-
-function loadState() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {checks:{},notes:{},hours:{}}; }
-  catch { return {checks:{},notes:{},hours:{}}; }
-}
-function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); updateStats(); }
-function makeCheck(id, label) {
-  const wrapper = document.createElement("label");
-  wrapper.className = "task";
-  const input = document.createElement("input");
-  input.type = "checkbox"; input.checked = !!state.checks[id];
-  input.addEventListener("change", () => { state.checks[id] = input.checked; saveState(); updateDayCounts(); });
-  const text = document.createElement("span"); text.textContent = label;
-  wrapper.append(input,text); return wrapper;
-}
-function render() {
-  const root = document.getElementById("days");
-  roadmap.forEach((day,index) => {
-    const [name,title,tasks,deliverable] = day;
-    const card = document.createElement("article"); card.className = "day";
-    const head = document.createElement("div"); head.className = "day-head";
-    const left = document.createElement("div");
-    const h = document.createElement("h3"); h.textContent = `${name} — ${title}`;
-    const p = document.createElement("p"); p.textContent = "Target: 5 hours";
-    left.append(h,p);
-    const count = document.createElement("div"); count.className = "day-count"; count.id = `count-${index}`;
-    count.textContent = `0 / ${tasks.length}`;
-    head.append(left,count); card.append(head);
-    const body = document.createElement("div"); body.className = "tasks";
-    tasks.forEach((task,i) => body.append(makeCheck(`d${index}-t${i}`,task)));
-    const deliver = document.createElement("div"); deliver.className = "deliverable";
-    deliver.innerHTML = "<b>Deliverable:</b> "; deliver.append(document.createTextNode(deliverable)); body.append(deliver);
-    const notes = document.createElement("div"); notes.className = "notes";
-    const label = document.createElement("label"); label.textContent = "Study notes / blockers";
-    const area = document.createElement("textarea"); area.placeholder = "What did you learn? What should you revise?";
-    area.value = state.notes[index] || "";
-    area.addEventListener("input", () => { state.notes[index] = area.value; localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); });
-    notes.append(label,area); body.append(notes);
-    const hourLabel = document.createElement("div"); hourLabel.className = "notes";
-    const hl = document.createElement("label"); hl.textContent = "Hours studied today (0–5)";
-    const hours = document.createElement("input"); hours.type = "number"; hours.min = "0"; hours.max = "5"; hours.step = "0.5";
-    hours.value = state.hours[index] ?? 0;
-    hours.style.cssText = "width:100%;padding:9px;border:1px solid var(--line);border-radius:9px;background:#0c1424;color:var(--text)";
-    hours.addEventListener("change", () => { state.hours[index] = Math.min(5,Math.max(0,Number(hours.value)||0)); hours.value=state.hours[index]; saveState(); });
-    hourLabel.append(hl,hours); body.append(hourLabel);
-    card.append(body); root.append(card);
+const days = [{"title": "Java setup, syntax and first programs", "goal": "Understand the Java execution model and write small console programs.", "blocks": [["Hour 1 — Environment and execution", ["Verify Java 25 with java --version and javac --version.", "Understand JDK vs JVM vs JRE, source code, bytecode and compilation.", "Create a GitHub repository and a clean src/ and README.md structure.", "Compile and run a HelloWorld program using javac and java."]], ["Hour 2 — Variables and types", ["Learn primitive types, reference types, literals, type casting and var.", "Learn operators, precedence and integer division.", "Write small examples for every primitive type."]], ["Hour 3 — Input, output and strings", ["Use System.out, printf and Scanner.", "Learn String immutability, common String methods and text blocks.", "Build a command-line profile card that accepts user input."]], ["Hour 4 — Decisions and loops", ["Learn if/else, switch expressions, for, while and do-while.", "Use break and continue appropriately.", "Solve 8–10 small problems: even/odd, grade calculator, multiplication table, factorial and digit sum."]], ["Hour 5 — Practice and commit", ["Build a menu-driven unit converter or simple calculator.", "Test invalid input and boundary cases.", "Commit the day's work with a clear Git commit message."]]], "deliverable": "A working console calculator or unit converter plus 8–10 small syntax exercises."}, {"title": "Methods, arrays and problem solving", "goal": "Break problems into reusable methods and process collections of values.", "blocks": [["Hour 1 — Methods", ["Learn method declarations, parameters, return values and method overloading.", "Understand pass-by-value in Java.", "Refactor Day 1 programs into small methods."]], ["Hour 2 — Arrays", ["Learn array creation, indexing, length and traversal.", "Work with 2D arrays and enhanced for loops.", "Implement min, max, sum, average and linear search."]], ["Hour 3 — Strings and algorithm patterns", ["Practice palindrome, anagram, character frequency and word counting.", "Learn StringBuilder and when to use it.", "Compare simple nested-loop solutions with more efficient approaches."]], ["Hour 4 — Recursion and basic complexity", ["Understand base cases and recursive calls.", "Implement factorial, Fibonacci and array sum recursively.", "Learn the intuition behind O(1), O(n), O(n log n) and O(n²)."]], ["Hour 5 — Practice set", ["Solve at least 8 problems using methods and arrays.", "Write brief notes explaining the approach and complexity.", "Commit solutions under day-02/."]]], "deliverable": "A collection of reusable methods and at least 8 solved array/string problems."}, {"title": "Object-oriented programming", "goal": "Model real entities using classes, objects and encapsulation.", "blocks": [["Hour 1 — Classes and objects", ["Learn fields, methods, object creation and references.", "Understand constructors, this and constructor overloading.", "Create Student, Book and BankAccount classes."]], ["Hour 2 — Encapsulation and access control", ["Learn private, public, protected and package-private access.", "Use getters, setters and validation in constructors.", "Protect object state with sensible invariants."]], ["Hour 3 — Inheritance and polymorphism", ["Learn extends, super, method overriding and dynamic dispatch.", "Understand final classes and methods.", "Build an Employee hierarchy and demonstrate runtime polymorphism."]], ["Hour 4 — Abstraction and interfaces", ["Learn abstract classes and interfaces.", "Understand default and static interface methods.", "Model payment methods or notification channels behind an interface."]], ["Hour 5 — OOP mini-project", ["Build a small library or banking application using multiple classes.", "Keep fields private and separate responsibilities.", "Draw or document the class relationships and commit."]]], "deliverable": "A small multi-class OOP application with encapsulation, inheritance, interfaces and polymorphism."}, {"title": "Core Java APIs, exceptions and packages", "goal": "Write safer programs using standard APIs and structured error handling.", "blocks": [["Hour 1 — Packages and project structure", ["Learn package declarations, imports and naming conventions.", "Organize classes into packages.", "Compile and run a packaged project from the command line."]], ["Hour 2 — Exceptions", ["Understand checked vs unchecked exceptions.", "Use try, catch, finally, throw and throws.", "Create a meaningful custom exception."]], ["Hour 3 — Object and utility APIs", ["Understand equals, hashCode and toString contracts.", "Use Objects, Math, Random and UUID.", "Override equals and hashCode correctly in a domain class."]], ["Hour 4 — Date/time and enums", ["Use LocalDate, LocalTime, LocalDateTime and Duration.", "Learn enum types and switch over enums.", "Build a simple task deadline or booking model."]], ["Hour 5 — File I/O", ["Read and write text files with Files and Path.", "Use try-with-resources.", "Build a notes or expense tracker that persists data to a file."]]], "deliverable": "A file-backed console application with packages, custom exceptions and date/time handling."}, {"title": "Collections and generics", "goal": "Choose the right data structure and write reusable type-safe code.", "blocks": [["Hour 1 — Collections overview", ["Understand Collection, List, Set, Queue and Map.", "Learn when to choose each interface.", "Compare ArrayList and LinkedList at a conceptual level."]], ["Hour 2 — Lists, sets and queues", ["Practice ArrayList, HashSet, LinkedHashSet and TreeSet.", "Practice ArrayDeque as a stack and queue.", "Remove duplicates while preserving order."]], ["Hour 3 — Maps and iteration", ["Practice HashMap, LinkedHashMap and TreeMap.", "Use entrySet, getOrDefault, putIfAbsent and computeIfAbsent.", "Build word-frequency and inventory-count programs."]], ["Hour 4 — Generics", ["Learn generic classes, methods and bounded type parameters.", "Understand wildcards: ?, extends and super.", "Build a generic Box or Repository class."]], ["Hour 5 — Collections challenge", ["Build a contact manager or inventory manager using collections.", "Support add, update, search, delete and list operations.", "Add at least 10 test cases and commit."]]], "deliverable": "A CRUD-style console manager using List, Set, Map and at least one generic type."}, {"title": "Modern Java, lambdas and streams", "goal": "Use functional-style Java and modern language features confidently.", "blocks": [["Hour 1 — Lambdas and functional interfaces", ["Learn lambda syntax and functional interfaces.", "Use Predicate, Function, Consumer and Supplier.", "Write a few custom functional interfaces."]], ["Hour 2 — Method references and Optional", ["Practice static, bound and unbound method references.", "Use Optional safely for potentially absent values.", "Avoid using Optional as a blanket replacement for every nullable field."]], ["Hour 3 — Stream API", ["Practice filter, map, flatMap, sorted, distinct and limit.", "Use collect, toList, groupingBy and partitioningBy.", "Transform a list of objects into reports."]], ["Hour 4 — Modern Java language features", ["Explore records, sealed classes and pattern matching supported by Java 25.", "Use switch expressions and text blocks.", "Compare a record with a traditional data class."]], ["Hour 5 — Stream-based project", ["Build a student-result or sales-report processor.", "Filter, group, sort and aggregate data with streams.", "Document where streams improve readability and where loops are clearer."]]], "deliverable": "A report generator using lambdas, streams, collectors, records and modern switch/pattern matching features."}, {"title": "Generics deeper, concurrency and JVM fundamentals", "goal": "Understand how Java runs and how threads share work safely.", "blocks": [["Hour 1 — Generics deeper", ["Review type bounds, generic methods and wildcard variance.", "Understand PECS: producer extends, consumer super.", "Implement a type-safe copy or transfer utility."]], ["Hour 2 — Threads and tasks", ["Learn Thread, Runnable and Callable.", "Use ExecutorService and Future.", "Run independent tasks and collect their results."]], ["Hour 3 — Synchronization", ["Understand race conditions, synchronized and volatile.", "Use AtomicInteger and concurrent collections.", "Build a counter test that demonstrates and then fixes a race condition."]], ["Hour 4 — JVM memory and garbage collection", ["Learn stack, heap, metaspace and object lifetime at a high level.", "Understand reachability and garbage collection; do not rely on System.gc().", "Use jcmd or Java Flight Recorder if available to inspect a running program."]], ["Hour 5 — Bytecode and JIT introduction", ["Compile a class and inspect it with javap -c -v.", "Identify method calls, fields and bytecode instructions.", "Understand interpretation, JIT compilation and why warm-up matters in benchmarks."]]], "deliverable": "A multithreaded task runner, a race-condition demonstration and a short bytecode/JVM inspection note."}, {"title": "Testing, debugging and build tools", "goal": "Make code maintainable and verify behavior automatically.", "blocks": [["Hour 1 — Debugging", ["Use IDE breakpoints, step over, step into and variable inspection.", "Read stack traces from the top-level failure and locate the root cause.", "Fix three intentionally introduced bugs."]], ["Hour 2 — Unit testing with JUnit 5", ["Create a test source set and add JUnit 5 using Maven or Gradle.", "Write tests with @Test and assertions.", "Test normal, edge and invalid-input cases."]], ["Hour 3 — Test design", ["Learn Arrange–Act–Assert and parameterized tests.", "Test exceptions and boundary conditions.", "Aim for meaningful behavior coverage, not an arbitrary coverage percentage."]], ["Hour 4 — Maven or Gradle", ["Choose Maven for this roadmap and understand pom.xml.", "Run clean, compile, test and package.", "Understand dependencies, plugins and the standard project layout."]], ["Hour 5 — Quality and GitHub", ["Add a .gitignore and document build/run/test commands.", "Push a clean repository with meaningful commits.", "Review code for naming, duplication and method size."]]], "deliverable": "A Maven Java project with automated JUnit tests, a reproducible build and clear GitHub documentation."}, {"title": "Database connectivity and application design", "goal": "Connect Java to a database and structure a small application cleanly.", "blocks": [["Hour 1 — SQL essentials", ["Review tables, primary keys, foreign keys and constraints.", "Practice SELECT, INSERT, UPDATE, DELETE, JOIN and indexes.", "Create a small database schema for the final project."]], ["Hour 2 — JDBC", ["Understand JDBC, Connection, PreparedStatement and ResultSet.", "Connect to a local database such as PostgreSQL or MySQL.", "Use prepared statements instead of concatenating SQL."]], ["Hour 3 — Transactions and resource safety", ["Understand auto-commit, commit and rollback.", "Use try-with-resources for JDBC resources.", "Handle SQL exceptions without hiding useful diagnostic details."]], ["Hour 4 — Layered design", ["Separate model, repository/DAO, service and application layers.", "Keep SQL out of user-interface code.", "Use interfaces where they clarify boundaries, not just for ceremony."]], ["Hour 5 — Database mini-project", ["Implement CRUD operations for one entity.", "Validate input and handle missing records.", "Write setup instructions and commit."]]], "deliverable": "A Java JDBC CRUD application with a relational database and separated layers."}, {"title": "Capstone, review and assessment", "goal": "Combine the core skills into a polished project and identify next steps.", "blocks": [["Hour 1 — Plan the capstone", ["Choose a console-based expense tracker, library manager or task manager.", "Write requirements, entities, operations and acceptance criteria.", "Sketch the class and database design before coding."]], ["Hour 2 — Implement core features", ["Implement models, services and repository/data access.", "Add validation and exception handling.", "Keep methods focused and use collections appropriately."]], ["Hour 3 — Test and improve", ["Write JUnit tests for core business logic.", "Test invalid inputs, empty data and boundary cases.", "Fix bugs and remove duplicated code."]], ["Hour 4 — Package and document", ["Build the project with Maven.", "Write a useful README with features, prerequisites and run steps.", "Add sample data, screenshots or terminal output where useful."]], ["Hour 5 — Final assessment", ["Explain JVM/JDK/JRE, OOP, collections, generics, streams, exceptions and concurrency without notes.", "Solve 3 timed problems using arrays, strings and maps.", "Review all 10 days and create a next-30-days learning backlog."]]], "deliverable": "A documented, tested Java capstone project published on GitHub and a personal list of topics to deepen."}];
+const storageKey = "java-10-day-roadmap-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch { state = {}; }
+const root = document.getElementById("roadmap");
+function taskId(d,h,t){return `d${d}-h${h}-t${t}`;}
+function render(){
+ root.innerHTML = "";
+ days.forEach((day,di)=>{
+  const card=document.createElement("section");card.className="day";
+  const head=document.createElement("div");head.className="day-head";head.tabIndex=0;
+  const left=document.createElement("div");
+  left.innerHTML=`<div class="day-number">DAY ${di+1} · 5 HOURS</div><h2>${day.title}</h2><p>${day.goal}</p>`;
+  const right=document.createElement("span");right.className="small";right.textContent="Show / hide";
+  head.append(left,right);
+  const body=document.createElement("div");body.className="day-body";
+  const goal=document.createElement("div");goal.className="goal";goal.innerHTML="<strong>Daily focus:</strong> Learn each concept, immediately apply it, then commit your work.";body.append(goal);
+  day.blocks.forEach((block,hi)=>{
+   const hour=document.createElement("div");hour.className="hour";
+   const title=document.createElement("h3");title.textContent=block[0];hour.append(title);
+   block[1].forEach((item,ti)=>{
+    const id=taskId(di,hi,ti), label=document.createElement("label");label.className="task"+(state[id]?" done":"");
+    const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!state[id];cb.addEventListener("change",()=>{state[id]=cb.checked;localStorage.setItem(storageKey,JSON.stringify(state));label.classList.toggle("done",cb.checked);updateStats();});
+    const span=document.createElement("span");span.textContent=item;label.append(cb,span);hour.append(label);
+   });
+   body.append(hour);
   });
-  const finalRoot = document.getElementById("finalTasks");
-  finalItems.forEach((item,i) => finalRoot.append(makeCheck(`final-${i}`,item)));
-  updateStats(); updateDayCounts();
+  const deliver=document.createElement("div");deliver.className="deliverable";deliver.innerHTML=`<strong>End-of-day deliverable</strong><div>${day.deliverable}</div>`;body.append(deliver);
+  head.addEventListener("click",()=>body.hidden=!body.hidden);
+  head.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();body.hidden=!body.hidden;}});
+  card.append(head,body);root.append(card);
+ });
+ updateStats();
 }
-function updateDayCounts() {
-  roadmap.forEach((day,index) => {
-    const done = day[2].filter((_,i)=>state.checks[`d${index}-t${i}`]).length;
-    document.getElementById(`count-${index}`).textContent = `${done} / ${day[2].length}`;
-  });
+function updateStats(){
+ const total=days.reduce((n,d)=>n+d.blocks.reduce((m,b)=>m+b[1].length,0),0);
+ const done=Object.values(state).filter(Boolean).length;
+ const pct=Math.round(done/total*100);
+ document.getElementById("percent").textContent=pct+"%";
+ document.getElementById("completed").textContent=done+" / "+total;
+ document.getElementById("bar").style.width=pct+"%";
 }
-function updateStats() {
-  const dailyTotal = roadmap.reduce((n,d)=>n+d[2].length,0);
-  const total = dailyTotal + finalItems.length;
-  const done = Object.values(state.checks).filter(Boolean).length;
-  const percent = Math.round(done/total*100);
-  const hours = Object.values(state.hours).reduce((n,v)=>n+(Number(v)||0),0);
-  document.getElementById("done").textContent = done;
-  document.getElementById("total").textContent = total;
-  document.getElementById("percent").textContent = `${percent}%`;
-  document.getElementById("hours").textContent = `${hours} / 50`;
-  document.getElementById("progressLabel").textContent = `${percent}%`;
-  document.getElementById("progressFill").style.width = `${percent}%`;
-}
-function exportProgress() {
-  const blob = new Blob([JSON.stringify({exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});
-  const url = URL.createObjectURL(blob); const a=document.createElement("a");
-  a.href=url; a.download="java-learning-progress.json"; a.click(); URL.revokeObjectURL(url);
-}
-function resetProgress() {
-  if (!confirm("Clear all checked tasks, notes and logged hours? This cannot be undone unless you exported a backup.")) return;
-  state={checks:{},notes:{},hours:{}}; localStorage.removeItem(STORAGE_KEY); location.reload();
-}
+document.getElementById("expandAll").onclick=()=>document.querySelectorAll(".day-body").forEach(x=>x.hidden=false);
+document.getElementById("collapseAll").onclick=()=>document.querySelectorAll(".day-body").forEach(x=>x.hidden=true);
+document.getElementById("reset").onclick=()=>{if(confirm("Reset all Java roadmap checkmarks?")){state={};localStorage.removeItem(storageKey);render();}};
 render();
 </script>
-</body>
-</html>
+</body></html>

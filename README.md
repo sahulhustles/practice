@@ -1,349 +1,397 @@
-# 10-Day Java Learning Roadmap
+# 10-Day Java 25 Learning Roadmap
 
-A hands-on, checklist-based plan to learn Java in **10 days**, studying
-**5 hours per day** (50 hours total).
+**Duration:** 10 days  ·  **Time commitment:** 5 hours/day  ·  **Total:** 50 hours
 
--   **Target:** Beginner to practical Java foundations
--   **Java version:** JDK 25
--   **Tracking:** GitHub Issues / daily commits / this checklist
--   **Approach:** Learn concepts, write code, solve problems, build
-    small projects
+This repository tracks a practical, project-driven Java learning sprint. Every day follows **learn → practise → build → commit**. The goal is to finish with strong Java fundamentals, a tested database-backed application, and enough JVM knowledge to continue into advanced Java.
 
-> The goal is not to master all of Java in 10 days. The goal is to build
-> a strong foundation and finish with a working, documented Java
-> project.
+> Use Java 25 (or a newer compatible JDK). The roadmap focuses on core Java first; do not rush ahead if the day's exercises are not working.
 
-## Daily study schedule (5 hours)
+## How to use this repository
 
-  Activity                                    Time
-  ---------------------------------- -------------
-  Learn concepts                            1 hour
-  Study examples and documentation      30 minutes
-  Hands-on coding                          2 hours
-  Coding challenges                         1 hour
-  GitHub commits and revision           30 minutes
-  **Total**                            **5 hours**
+1. Create a GitHub repository, for example `java-10-day-challenge`.
+2. Add this README and the `java-10-day-tracker.html` file.
+3. Open the HTML tracker in a browser. Tick tasks as you complete them; checkmarks are saved in that browser's local storage.
+4. Keep code in the suggested folders below, and commit your work every day.
+5. At the end of each day, write a short reflection: what you learned, what was difficult, and what you need to revisit.
 
-------------------------------------------------------------------------
-
-## Day 1 --- Java Fundamentals
-
--   [ ] Understand JDK, JRE, JVM, and the Java compilation process.
--   [ ] Install and configure JDK 25.
--   [ ] Verify `java --version` and `javac --version`.
--   [ ] Understand Java program structure and the `main` method.
--   [ ] Learn variables and primitive data types.
--   [ ] Learn type casting and operators.
--   [ ] Read console input using `Scanner`.
--   [ ] Learn `String` and common String methods.
--   [ ] Build a command-line calculator.
--   [ ] Solve 10 basic programming problems.
-
-**Deliverable:** Calculator and a collection of basic Java exercises.
-
-## Day 2 --- Control Flow and Methods
-
--   [ ] Learn `if`, `else if`, and `switch`.
--   [ ] Learn `for`, `while`, and `do-while` loops.
--   [ ] Understand `break` and `continue`.
--   [ ] Declare and call methods.
--   [ ] Understand parameters and return values.
--   [ ] Practice method overloading.
--   [ ] Understand variable scope.
--   [ ] Implement a recursive method.
--   [ ] Build a number guessing game.
--   [ ] Solve 10 loop and method problems.
-
-**Deliverable:** Number guessing game.
-
-## Day 3 --- Arrays and Strings
-
--   [ ] Create and initialize one-dimensional arrays.
--   [ ] Work with multidimensional arrays.
--   [ ] Traverse, update, insert, and search array elements.
--   [ ] Implement linear search and binary search.
--   [ ] Implement basic sorting algorithms (bubble, selection,
-    insertion).
--   [ ] Understand String immutability.
--   [ ] Practice `StringBuilder` and `StringBuffer`.
--   [ ] Understand `equals()` versus `==`.
--   [ ] Solve 10 array and String problems.
-
-**Deliverable:** Array and String problem collection.
-
-## Day 4 --- Object-Oriented Programming
-
--   [ ] Understand classes and objects.
--   [ ] Create constructors and overloaded constructors.
--   [ ] Understand the `this` keyword.
--   [ ] Learn static variables and methods.
--   [ ] Apply encapsulation.
--   [ ] Use getters and setters appropriately.
--   [ ] Understand access modifiers.
--   [ ] Organize code using packages and imports.
--   [ ] Build a Student Management System.
-
-**Deliverable:** Student Management System.
-
-## Day 5 --- Advanced OOP
-
--   [ ] Understand inheritance.
--   [ ] Practice method overriding.
--   [ ] Understand polymorphism.
--   [ ] Compare compile-time and runtime polymorphism.
--   [ ] Create abstract classes.
--   [ ] Create and implement interfaces.
--   [ ] Explore `default` and `static` interface methods.
--   [ ] Understand the `final` keyword.
--   [ ] Compare composition and inheritance.
--   [ ] Build an object-oriented Banking System.
-
-**Deliverable:** Banking System with accounts and basic transactions.
-
-## Day 6 --- Collections and Generics
-
--   [ ] Understand the Java Collections Framework.
--   [ ] Practice `ArrayList` and `LinkedList`.
--   [ ] Practice `HashSet` and `TreeSet`.
--   [ ] Practice `HashMap` and `TreeMap`.
--   [ ] Iterate using `Iterator` and enhanced `for`.
--   [ ] Understand `Comparable` and `Comparator`.
--   [ ] Create generic classes and methods.
--   [ ] Understand bounded type parameters and wildcards.
--   [ ] Learn basic Big-O time complexity.
--   [ ] Build a Contact Management application using collections.
-
-**Deliverable:** Contact Management System.
-
-## Day 7 --- Exception Handling and File I/O
-
--   [ ] Understand the Java exception hierarchy.
--   [ ] Use `try`, `catch`, and `finally`.
--   [ ] Understand `throw` and `throws`.
--   [ ] Compare checked and unchecked exceptions.
--   [ ] Create custom exceptions.
--   [ ] Explore the `File` and `Path` APIs.
--   [ ] Read files using `BufferedReader`.
--   [ ] Write files using `BufferedWriter`.
--   [ ] Understand basic serialization concepts.
--   [ ] Build a file-based Expense Tracker.
-
-**Deliverable:** Expense Tracker that saves and loads data from files.
-
-## Day 8 --- Functional Java
-
--   [ ] Understand lambda expressions.
--   [ ] Learn functional interfaces.
--   [ ] Practice `Predicate`, `Function`, `Consumer`, and `Supplier`.
--   [ ] Understand method references.
--   [ ] Learn the Stream API.
--   [ ] Practice `filter()`, `map()`, and `reduce()`.
--   [ ] Practice `sorted()`, `distinct()`, and `collect()`.
--   [ ] Understand `Optional`.
--   [ ] Compare intermediate and terminal stream operations.
--   [ ] Solve 10 Stream API challenges.
-
-**Deliverable:** A data-processing application using Streams.
-
-## Day 9 --- Multithreading and JVM Fundamentals
-
--   [ ] Understand processes versus threads.
--   [ ] Create threads using `Thread` and `Runnable`.
--   [ ] Understand the thread lifecycle.
--   [ ] Practice synchronization using `synchronized`.
--   [ ] Understand race conditions and deadlocks.
--   [ ] Learn `ExecutorService`.
--   [ ] Practice `Callable` and `Future`.
--   [ ] Understand heap and stack memory.
--   [ ] Learn garbage collection fundamentals.
--   [ ] Understand JIT compilation at a high level.
--   [ ] Inspect compiled bytecode using `javap`.
--   [ ] Run a basic multithreading experiment.
-
-**Deliverable:** Multithreaded task-processing application.
-
-## Day 10 --- Testing and Final Project
-
--   [ ] Understand Maven and its project structure.
--   [ ] Understand dependencies and `pom.xml`.
--   [ ] Set up JUnit 5.
--   [ ] Write unit tests for important methods.
--   [ ] Practice debugging with breakpoints.
--   [ ] Learn basic logging.
--   [ ] Review OOP, collections, exceptions, and Streams.
--   [ ] Refactor code into meaningful packages.
--   [ ] Write a useful README for the project.
--   [ ] Complete, run, and test the final project.
--   [ ] Push the finished project to GitHub.
-
-**Deliverable:** A complete, tested, documented Java application.
-
-------------------------------------------------------------------------
-
-## Final project --- Personal Task Manager
-
-Build a command-line task manager that combines the concepts from the
-roadmap.
-
-### Core requirements
-
--   [ ] Add a task with title, description, priority, and due date.
--   [ ] List all tasks.
--   [ ] Update task details.
--   [ ] Mark a task as completed.
--   [ ] Delete a task.
--   [ ] Filter tasks by status or priority.
--   [ ] Store tasks in a local file.
--   [ ] Load saved tasks when the application starts.
--   [ ] Validate user input and handle errors.
--   [ ] Use classes, interfaces, and encapsulation.
--   [ ] Use collections to manage tasks.
--   [ ] Use Streams for filtering and sorting.
--   [ ] Add unit tests with JUnit 5.
--   [ ] Document how to compile and run the project.
-
-### Suggested package structure
-
-``` text
-java-task-manager/
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── com/example/taskmanager/
-│   │           ├── Main.java
-│   │           ├── model/
-│   │           │   └── Task.java
-│   │           ├── service/
-│   │           │   └── TaskService.java
-│   │           ├── repository/
-│   │           │   └── TaskRepository.java
-│   │           └── util/
-│   │               └── InputValidator.java
-│   └── test/
-│       └── java/
-├── data/
+```text
+java-10-day-challenge/
 ├── README.md
-└── pom.xml
+├── java-10-day-tracker.html
+├── day-01/
+├── day-02/
+├── day-03/
+├── day-04/
+├── day-05/
+├── day-06/
+├── day-07/
+├── day-08/
+├── day-09/
+└── day-10/
 ```
 
-Treat this as a suggested structure; introduce packages gradually rather
-than creating empty files on day one.
+## Daily time structure
 
-------------------------------------------------------------------------
+| Time | Activity |
+|---|---|
+| Hour 1 | Learn the concepts and take concise notes |
+| Hour 2 | Follow small examples and experiment |
+| Hour 3 | Complete focused exercises |
+| Hour 4 | Build the day's practical deliverable |
+| Hour 5 | Test, review, document and commit |
 
-## GitHub tracking
+Do not spend all five hours watching tutorials. Keep at least three hours hands-on.
 
-### Suggested repository structure
+## Roadmap checklist
 
-``` text
-10-days-of-java/
-├── README.md
-├── day-01-fundamentals/
-├── day-02-control-flow-methods/
-├── day-03-arrays-strings/
-├── day-04-oop/
-├── day-05-advanced-oop/
-├── day-06-collections-generics/
-├── day-07-exceptions-file-io/
-├── day-08-functional-java/
-├── day-09-concurrency-jvm/
-└── day-10-final-project/
-```
+### Day 1 — Java setup, syntax and first programs
+**Goal:** Understand the Java execution model and write small console programs.
 
-### Daily Git workflow
+**Hour 1 — Environment and execution**
+- [ ] Verify Java 25 with java --version and javac --version.
+- [ ] Understand JDK vs JVM vs JRE, source code, bytecode and compilation.
+- [ ] Create a GitHub repository and a clean src/ and README.md structure.
+- [ ] Compile and run a HelloWorld program using javac and java.
 
-At the end of every study session:
+**Hour 2 — Variables and types**
+- [ ] Learn primitive types, reference types, literals, type casting and var.
+- [ ] Learn operators, precedence and integer division.
+- [ ] Write small examples for every primitive type.
 
-``` bash
+**Hour 3 — Input, output and strings**
+- [ ] Use System.out, printf and Scanner.
+- [ ] Learn String immutability, common String methods and text blocks.
+- [ ] Build a command-line profile card that accepts user input.
+
+**Hour 4 — Decisions and loops**
+- [ ] Learn if/else, switch expressions, for, while and do-while.
+- [ ] Use break and continue appropriately.
+- [ ] Solve 8–10 small problems: even/odd, grade calculator, multiplication table, factorial and digit sum.
+
+**Hour 5 — Practice and commit**
+- [ ] Build a menu-driven unit converter or simple calculator.
+- [ ] Test invalid input and boundary cases.
+- [ ] Commit the day's work with a clear Git commit message.
+
+**Deliverable:** A working console calculator or unit converter plus 8–10 small syntax exercises.
+
+### Day 2 — Methods, arrays and problem solving
+**Goal:** Break problems into reusable methods and process collections of values.
+
+**Hour 1 — Methods**
+- [ ] Learn method declarations, parameters, return values and method overloading.
+- [ ] Understand pass-by-value in Java.
+- [ ] Refactor Day 1 programs into small methods.
+
+**Hour 2 — Arrays**
+- [ ] Learn array creation, indexing, length and traversal.
+- [ ] Work with 2D arrays and enhanced for loops.
+- [ ] Implement min, max, sum, average and linear search.
+
+**Hour 3 — Strings and algorithm patterns**
+- [ ] Practice palindrome, anagram, character frequency and word counting.
+- [ ] Learn StringBuilder and when to use it.
+- [ ] Compare simple nested-loop solutions with more efficient approaches.
+
+**Hour 4 — Recursion and basic complexity**
+- [ ] Understand base cases and recursive calls.
+- [ ] Implement factorial, Fibonacci and array sum recursively.
+- [ ] Learn the intuition behind O(1), O(n), O(n log n) and O(n²).
+
+**Hour 5 — Practice set**
+- [ ] Solve at least 8 problems using methods and arrays.
+- [ ] Write brief notes explaining the approach and complexity.
+- [ ] Commit solutions under day-02/.
+
+**Deliverable:** A collection of reusable methods and at least 8 solved array/string problems.
+
+### Day 3 — Object-oriented programming
+**Goal:** Model real entities using classes, objects and encapsulation.
+
+**Hour 1 — Classes and objects**
+- [ ] Learn fields, methods, object creation and references.
+- [ ] Understand constructors, this and constructor overloading.
+- [ ] Create Student, Book and BankAccount classes.
+
+**Hour 2 — Encapsulation and access control**
+- [ ] Learn private, public, protected and package-private access.
+- [ ] Use getters, setters and validation in constructors.
+- [ ] Protect object state with sensible invariants.
+
+**Hour 3 — Inheritance and polymorphism**
+- [ ] Learn extends, super, method overriding and dynamic dispatch.
+- [ ] Understand final classes and methods.
+- [ ] Build an Employee hierarchy and demonstrate runtime polymorphism.
+
+**Hour 4 — Abstraction and interfaces**
+- [ ] Learn abstract classes and interfaces.
+- [ ] Understand default and static interface methods.
+- [ ] Model payment methods or notification channels behind an interface.
+
+**Hour 5 — OOP mini-project**
+- [ ] Build a small library or banking application using multiple classes.
+- [ ] Keep fields private and separate responsibilities.
+- [ ] Draw or document the class relationships and commit.
+
+**Deliverable:** A small multi-class OOP application with encapsulation, inheritance, interfaces and polymorphism.
+
+### Day 4 — Core Java APIs, exceptions and packages
+**Goal:** Write safer programs using standard APIs and structured error handling.
+
+**Hour 1 — Packages and project structure**
+- [ ] Learn package declarations, imports and naming conventions.
+- [ ] Organize classes into packages.
+- [ ] Compile and run a packaged project from the command line.
+
+**Hour 2 — Exceptions**
+- [ ] Understand checked vs unchecked exceptions.
+- [ ] Use try, catch, finally, throw and throws.
+- [ ] Create a meaningful custom exception.
+
+**Hour 3 — Object and utility APIs**
+- [ ] Understand equals, hashCode and toString contracts.
+- [ ] Use Objects, Math, Random and UUID.
+- [ ] Override equals and hashCode correctly in a domain class.
+
+**Hour 4 — Date/time and enums**
+- [ ] Use LocalDate, LocalTime, LocalDateTime and Duration.
+- [ ] Learn enum types and switch over enums.
+- [ ] Build a simple task deadline or booking model.
+
+**Hour 5 — File I/O**
+- [ ] Read and write text files with Files and Path.
+- [ ] Use try-with-resources.
+- [ ] Build a notes or expense tracker that persists data to a file.
+
+**Deliverable:** A file-backed console application with packages, custom exceptions and date/time handling.
+
+### Day 5 — Collections and generics
+**Goal:** Choose the right data structure and write reusable type-safe code.
+
+**Hour 1 — Collections overview**
+- [ ] Understand Collection, List, Set, Queue and Map.
+- [ ] Learn when to choose each interface.
+- [ ] Compare ArrayList and LinkedList at a conceptual level.
+
+**Hour 2 — Lists, sets and queues**
+- [ ] Practice ArrayList, HashSet, LinkedHashSet and TreeSet.
+- [ ] Practice ArrayDeque as a stack and queue.
+- [ ] Remove duplicates while preserving order.
+
+**Hour 3 — Maps and iteration**
+- [ ] Practice HashMap, LinkedHashMap and TreeMap.
+- [ ] Use entrySet, getOrDefault, putIfAbsent and computeIfAbsent.
+- [ ] Build word-frequency and inventory-count programs.
+
+**Hour 4 — Generics**
+- [ ] Learn generic classes, methods and bounded type parameters.
+- [ ] Understand wildcards: ?, extends and super.
+- [ ] Build a generic Box or Repository class.
+
+**Hour 5 — Collections challenge**
+- [ ] Build a contact manager or inventory manager using collections.
+- [ ] Support add, update, search, delete and list operations.
+- [ ] Add at least 10 test cases and commit.
+
+**Deliverable:** A CRUD-style console manager using List, Set, Map and at least one generic type.
+
+### Day 6 — Modern Java, lambdas and streams
+**Goal:** Use functional-style Java and modern language features confidently.
+
+**Hour 1 — Lambdas and functional interfaces**
+- [ ] Learn lambda syntax and functional interfaces.
+- [ ] Use Predicate, Function, Consumer and Supplier.
+- [ ] Write a few custom functional interfaces.
+
+**Hour 2 — Method references and Optional**
+- [ ] Practice static, bound and unbound method references.
+- [ ] Use Optional safely for potentially absent values.
+- [ ] Avoid using Optional as a blanket replacement for every nullable field.
+
+**Hour 3 — Stream API**
+- [ ] Practice filter, map, flatMap, sorted, distinct and limit.
+- [ ] Use collect, toList, groupingBy and partitioningBy.
+- [ ] Transform a list of objects into reports.
+
+**Hour 4 — Modern Java language features**
+- [ ] Explore records, sealed classes and pattern matching supported by Java 25.
+- [ ] Use switch expressions and text blocks.
+- [ ] Compare a record with a traditional data class.
+
+**Hour 5 — Stream-based project**
+- [ ] Build a student-result or sales-report processor.
+- [ ] Filter, group, sort and aggregate data with streams.
+- [ ] Document where streams improve readability and where loops are clearer.
+
+**Deliverable:** A report generator using lambdas, streams, collectors, records and modern switch/pattern matching features.
+
+### Day 7 — Generics deeper, concurrency and JVM fundamentals
+**Goal:** Understand how Java runs and how threads share work safely.
+
+**Hour 1 — Generics deeper**
+- [ ] Review type bounds, generic methods and wildcard variance.
+- [ ] Understand PECS: producer extends, consumer super.
+- [ ] Implement a type-safe copy or transfer utility.
+
+**Hour 2 — Threads and tasks**
+- [ ] Learn Thread, Runnable and Callable.
+- [ ] Use ExecutorService and Future.
+- [ ] Run independent tasks and collect their results.
+
+**Hour 3 — Synchronization**
+- [ ] Understand race conditions, synchronized and volatile.
+- [ ] Use AtomicInteger and concurrent collections.
+- [ ] Build a counter test that demonstrates and then fixes a race condition.
+
+**Hour 4 — JVM memory and garbage collection**
+- [ ] Learn stack, heap, metaspace and object lifetime at a high level.
+- [ ] Understand reachability and garbage collection; do not rely on System.gc().
+- [ ] Use jcmd or Java Flight Recorder if available to inspect a running program.
+
+**Hour 5 — Bytecode and JIT introduction**
+- [ ] Compile a class and inspect it with javap -c -v.
+- [ ] Identify method calls, fields and bytecode instructions.
+- [ ] Understand interpretation, JIT compilation and why warm-up matters in benchmarks.
+
+**Deliverable:** A multithreaded task runner, a race-condition demonstration and a short bytecode/JVM inspection note.
+
+### Day 8 — Testing, debugging and build tools
+**Goal:** Make code maintainable and verify behavior automatically.
+
+**Hour 1 — Debugging**
+- [ ] Use IDE breakpoints, step over, step into and variable inspection.
+- [ ] Read stack traces from the top-level failure and locate the root cause.
+- [ ] Fix three intentionally introduced bugs.
+
+**Hour 2 — Unit testing with JUnit 5**
+- [ ] Create a test source set and add JUnit 5 using Maven or Gradle.
+- [ ] Write tests with @Test and assertions.
+- [ ] Test normal, edge and invalid-input cases.
+
+**Hour 3 — Test design**
+- [ ] Learn Arrange–Act–Assert and parameterized tests.
+- [ ] Test exceptions and boundary conditions.
+- [ ] Aim for meaningful behavior coverage, not an arbitrary coverage percentage.
+
+**Hour 4 — Maven or Gradle**
+- [ ] Choose Maven for this roadmap and understand pom.xml.
+- [ ] Run clean, compile, test and package.
+- [ ] Understand dependencies, plugins and the standard project layout.
+
+**Hour 5 — Quality and GitHub**
+- [ ] Add a .gitignore and document build/run/test commands.
+- [ ] Push a clean repository with meaningful commits.
+- [ ] Review code for naming, duplication and method size.
+
+**Deliverable:** A Maven Java project with automated JUnit tests, a reproducible build and clear GitHub documentation.
+
+### Day 9 — Database connectivity and application design
+**Goal:** Connect Java to a database and structure a small application cleanly.
+
+**Hour 1 — SQL essentials**
+- [ ] Review tables, primary keys, foreign keys and constraints.
+- [ ] Practice SELECT, INSERT, UPDATE, DELETE, JOIN and indexes.
+- [ ] Create a small database schema for the final project.
+
+**Hour 2 — JDBC**
+- [ ] Understand JDBC, Connection, PreparedStatement and ResultSet.
+- [ ] Connect to a local database such as PostgreSQL or MySQL.
+- [ ] Use prepared statements instead of concatenating SQL.
+
+**Hour 3 — Transactions and resource safety**
+- [ ] Understand auto-commit, commit and rollback.
+- [ ] Use try-with-resources for JDBC resources.
+- [ ] Handle SQL exceptions without hiding useful diagnostic details.
+
+**Hour 4 — Layered design**
+- [ ] Separate model, repository/DAO, service and application layers.
+- [ ] Keep SQL out of user-interface code.
+- [ ] Use interfaces where they clarify boundaries, not just for ceremony.
+
+**Hour 5 — Database mini-project**
+- [ ] Implement CRUD operations for one entity.
+- [ ] Validate input and handle missing records.
+- [ ] Write setup instructions and commit.
+
+**Deliverable:** A Java JDBC CRUD application with a relational database and separated layers.
+
+### Day 10 — Capstone, review and assessment
+**Goal:** Combine the core skills into a polished project and identify next steps.
+
+**Hour 1 — Plan the capstone**
+- [ ] Choose a console-based expense tracker, library manager or task manager.
+- [ ] Write requirements, entities, operations and acceptance criteria.
+- [ ] Sketch the class and database design before coding.
+
+**Hour 2 — Implement core features**
+- [ ] Implement models, services and repository/data access.
+- [ ] Add validation and exception handling.
+- [ ] Keep methods focused and use collections appropriately.
+
+**Hour 3 — Test and improve**
+- [ ] Write JUnit tests for core business logic.
+- [ ] Test invalid inputs, empty data and boundary cases.
+- [ ] Fix bugs and remove duplicated code.
+
+**Hour 4 — Package and document**
+- [ ] Build the project with Maven.
+- [ ] Write a useful README with features, prerequisites and run steps.
+- [ ] Add sample data, screenshots or terminal output where useful.
+
+**Hour 5 — Final assessment**
+- [ ] Explain JVM/JDK/JRE, OOP, collections, generics, streams, exceptions and concurrency without notes.
+- [ ] Solve 3 timed problems using arrays, strings and maps.
+- [ ] Review all 10 days and create a next-30-days learning backlog.
+
+**Deliverable:** A documented, tested Java capstone project published on GitHub and a personal list of topics to deepen.
+
+## Git workflow
+
+A simple daily workflow:
+
+```bash
 git status
 git add .
-git commit -m "Day 01: Complete Java fundamentals"
+git commit -m "day-01: complete Java syntax exercises"
 git push origin main
 ```
 
-Use meaningful commit messages, for example:
+Use a separate commit for meaningful milestones. Avoid committing generated `.class` files, IDE caches, build output or secrets.
 
--   `Day 01: Add calculator and primitive type exercises`
--   `Day 04: Implement student management system`
--   `Day 07: Add file persistence to expense tracker`
--   `Day 10: Complete task manager and unit tests`
+Suggested `.gitignore`:
 
-### Daily progress log
-
-Copy this template into a `PROGRESS.md` file and update it each day:
-
-``` markdown
-## Day X — Topic
-
-- [ ] Concepts completed
-- [ ] Coding exercises completed
-- [ ] Mini-project completed
-- [ ] Code pushed to GitHub
-
-### What I learned
--
-
-### Problems I faced
--
-
-### What I need to revise
--
-
-### Time spent
-5 hours
+```gitignore
+*.class
+target/
+build/
+.idea/
+.vscode/
+*.iml
+.DS_Store
 ```
 
-### Completion tracker
+## Completion criteria
 
--   [ ] Day 1 --- Fundamentals
--   [ ] Day 2 --- Control Flow and Methods
--   [ ] Day 3 --- Arrays and Strings
--   [ ] Day 4 --- OOP
--   [ ] Day 5 --- Advanced OOP
--   [ ] Day 6 --- Collections and Generics
--   [ ] Day 7 --- Exceptions and File I/O
--   [ ] Day 8 --- Functional Java
--   [ ] Day 9 --- Multithreading and JVM
--   [ ] Day 10 --- Testing and Final Project
+- [ ] All 10 days completed, with roughly 5 focused hours per day.
+- [ ] Daily deliverables are committed and pushed.
+- [ ] The capstone builds successfully with Maven.
+- [ ] JUnit tests pass.
+- [ ] README includes setup, database configuration, build, test and run instructions.
+- [ ] I can explain the major topics without copying notes.
+- [ ] I have written a 30-day follow-up plan based on weak areas.
 
-------------------------------------------------------------------------
+## Important expectations
 
-## Recommended learning resources
+- Ten days is an intensive foundation sprint, not mastery of the entire Java ecosystem.
+- If a topic is difficult, spend the next day's first 30–45 minutes reviewing it rather than memorising answers.
+- For JDBC, use a local database and never commit passwords or API keys.
+- For concurrency and JVM experiments, use bounded workloads. Do not intentionally exhaust your machine's memory.
+- Prefer readable, tested code over clever one-liners.
 
-1.  [dev.java --- Official Java learning
-    resources](https://dev.java/learn/)
-2.  [Java 25 Documentation](https://docs.oracle.com/en/java/javase/25/)
-3.  [Java Language
-    Specification](https://docs.oracle.com/javase/specs/jls/se25/html/)
-4.  [JUnit 5 User
-    Guide](https://junit.org/junit5/docs/current/user-guide/)
-5.  [Maven Getting Started
-    Guide](https://maven.apache.org/guides/getting-started/)
+## Final capstone
 
-## Rules to follow
+Choose one: **Expense Tracker**, **Library Manager**, or **Task Manager**. It should include classes, collections, validation, exception handling, file or database persistence, a layered structure, and JUnit tests. The Day 10 version should be small and complete rather than large and unfinished.
 
-1.  Write code every day. Do not just watch tutorials.
-2.  Attempt exercises yourself before looking at solutions.
-3.  Do not copy-paste complete projects without understanding them.
-4.  Commit your work daily, even if you have not completed every task.
-5.  Maintain a list of mistakes and concepts that need revision.
-6.  Do not rush through OOP. It is one of the most important parts of
-    Java.
-7.  At the end of Day 10, explain your final project without referring
-    to the source code.
+## After the 10 days
 
-## What success looks like after 10 days
-
-By the end of this plan, you should be able to:
-
--   Write Java programs independently.
--   Understand and apply object-oriented programming.
--   Work with collections, generics, and Streams.
--   Handle exceptions and persist data using files.
--   Understand basic concurrency and JVM concepts.
--   Create and test a structured Java application.
--   Use Git and GitHub to document your learning.
-
-**Remember:** 50 focused hours can establish a solid foundation, but
-fluency comes from continued practice. Keep building projects after Day
-10.
+Continue with deeper Java, SQL, Spring Boot, REST APIs, testing, security, Docker and deployment. Revisit JVM profiling and concurrency with dedicated projects instead of trying to master them in this sprint.
