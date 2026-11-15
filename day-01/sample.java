@@ -8,6 +8,6 @@ public class sample {
         String name = sd.nextLine();
         System.out.println("Hello " + name);
         sd.close();
-
+                
     }
 }
