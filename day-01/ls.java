@@ -34,6 +34,6 @@ class ls
         System.out.println("Enter your target - ");
         int tar = sd.nextInt();
         sd.close();
-        System.out.println("The index of the target is: " + search(nums, tar));
+        System.out.println("The index of the target is : " + search(nums, tar));
     }
 }
